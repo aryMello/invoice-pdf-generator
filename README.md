@@ -30,7 +30,7 @@ Ideal for freelancers, small businesses, and developers who want fast, reliable 
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/yourusername/invoice-pdf-generator.git
+git clone https://github.com/aryMello/invoice-pdf-generator.git
 cd invoice-pdf-generator
 ```
 
