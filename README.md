@@ -21,7 +21,7 @@ Ideal for freelancers, small businesses, and developers who want fast, reliable 
 
 | Spreadsheet Input | PDF Output |
 |-------------------|------------|
-| ![spreadsheet](examples/sample_xlsx.png) | ![pdf](examples/sample_pdf.png) |
+| ![spreadsheet](app/clients.xlsx) | ![pdf](app/invoices/INV-1001.pdf) |
 
 ---
 
