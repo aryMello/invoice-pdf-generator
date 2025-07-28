@@ -26,18 +26,18 @@ Ideal for freelancers, small businesses, and developers who want fast, reliable 
 ---
 
 ## 📂 Folder Structure
-- invoice-pdf-generator/
--- app/
---- templates/ # HTML invoice template
---- clients.xlsx # Sample client data
---- config.json # Invoice configuration
---- invoice_generator.py
---- email_sender.py
--- invoices/ # Output PDFs
--- logo.png # Logo used in invoices
--- main.py # Main entry script
--- requirements.txt
--- wkhtmltopdf.exe # Windows binary
+invoice-pdf-generator/
+- app/
+-- templates/ # HTML invoice template
+-- clients.xlsx # Sample client data
+-- config.json # Invoice configuration
+-- invoice_generator.py
+-- email_sender.py
+- invoices/ # Output PDFs
+- logo.png # Logo used in invoices
+- main.py # Main entry script
+- requirements.txt
+- wkhtmltopdf.exe # Windows binary
 
 ## Installation
 
