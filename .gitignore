@@ -1,0 +1,52 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Python virtual environments
+venv/
+env/
+.venv/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# PDF output (optional)
+app/invoices/
+
+# System files
+*.swp
+*.swo
+
+# VSCode or JetBrains settings
+.vscode/
+.idea/
+
+# Executables
+*.exe
+wkhtmltopdf.exe
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.bak
+*.tmp
+*.old

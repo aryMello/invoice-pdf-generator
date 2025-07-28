@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Invoice {{ invoice_number }}</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', serif;
+      font-size: 12pt;
+      margin: 40px;
+      background: #fff;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    /* Logo and slogan + company name */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      text-align: left;
+      max-width: 200px;
+    }
+
+    .logo-container img {
+      max-height: 60px;
+      object-fit: contain;
+    }
+
+    .company-slogan {
+      font-size: 12pt;
+      font-style: italic;
+      color: #555;
+      margin-top: 8px;
+    }
+
+    .company-name {
+      font-size: 20pt;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    /* Invoice header */
+    .invoice-header {
+      margin-top: 20px;
+      border-bottom: 2px solid #333;
+      padding-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14pt;
+    }
+
+    /* Side-by-side columns */
+    .top-section {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .top-section table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12pt;
+    }
+
+    .top-section td {
+      vertical-align: top;
+      padding: 6px 12px;
+    }
+
+    .top-section td:first-child {
+      width: 50%;
+      padding-right: 24px;
+    }
+
+    .top-section td:last-child {
+      width: 50%;
+      padding-left: 24px;
+    }
+
+    /* Items table */
+    table.items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      font-size: 11pt;
+    }
+
+    table.items-table thead {
+      background-color: #f5f5f5;
+      border-bottom: 2px solid #333;
+    }
+
+    table.items-table th,
+    table.items-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    table.items-table th.qty,
+    table.items-table td.qty {
+      width: 60px;
+      text-align: center;
+    }
+
+    table.items-table th.unit-price,
+    table.items-table td.unit-price,
+    table.items-table th.line-total,
+    table.items-table td.line-total {
+      width: 110px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Summary table */
+    table.summary-table {
+      width: 300px;
+      margin-left: auto;
+      border-collapse: collapse;
+      font-size: 11pt;
+    }
+
+    table.summary-table td {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+    }
+
+    table.summary-table tr:last-child td {
+      border-top: 2px solid #333;
+      font-weight: bold;
+      font-size: 12pt;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 9pt;
+      color: #777;
+      margin-top: 60px;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Logo, slogan, and company name -->
+    <div class="top-bar">
+      <div class="logo-container">
+        <img src="{{ logo }}" alt="Company Logo" />
+        <div class="company-slogan">{{ company_slogan }}</div>
+      </div>
+      <div class="company-name">
+        {{ company_name }}
+      </div>
+    </div>
+
+    <!-- Invoice title and number -->
+    <div class="invoice-header">
+      <span></span> <!-- empty to align -->
+      <span><strong>Invoice #: {{ invoice_number }}</strong></span>
+    </div>
+
+    <!-- Side-by-side columns -->
+    <div class="top-section">
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Bill To</strong><br />
+              {{ client_name }}<br />
+              {{ billing_address }}<br />
+              Email: {{ client_email }}<br />
+              Phone: {{ phone }}<br /><br />
+
+              <strong>Payment Method:</strong><br />
+              {{ payment_method }}<br /><br />
+
+              <strong>Order ID:</strong><br />
+              {{ order_id }}
+            </td>
+            <td>
+              <strong>Salesperson:</strong><br />
+              {{ salesperson }}<br /><br />
+
+              <strong>Job:</strong><br />
+              {{ job }}<br /><br />
+
+              <strong>Invoice Date:</strong><br />
+              {{ invoice_date }}<br /><br />
+
+              <strong>Due Date:</strong><br />
+              {{ due_date }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Items Table -->
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th class="qty">Qty</th>
+          <th class="desc">Description</th>
+          <th class="unit-price">Unit Price</th>
+          <th class="line-total">Line Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td class="qty">{{ item.quantity }}</td>
+          <td class="desc">{{ item.description }}</td>
+          <td class="unit-price">{{ currency }} {{ '%.2f'|format(item.unit_price) }}</td>
+          <td class="line-total">{{ currency }} {{ '%.2f'|format(item.quantity * item.unit_price) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Summary and Total Table -->
+    <table class="summary-table">
+      <tbody>
+        <tr>
+          <td><strong>Subtotal:</strong></td>
+          <td style="text-align: right;">{{ currency }} {{ '%.2f'|format(subtotal) }}</td>
+        </tr>
+        <tr>
+          <td><strong>Tax:</strong></td>
+          <td style="text-align: right;">{{ currency }} {{ '%.2f'|format(total_tax) }}</td>
+        </tr>
+        <tr>
+          <td><strong>Shipping:</strong></td>
+          <td style="text-align: right;">{{ currency }} {{ '%.2f'|format(total_shipping) }}</td>
+        </tr>
+        <tr>
+          <td><strong>Total Amount:</strong></td>
+          <td style="text-align: right;">{{ currency }} {{ '%.2f'|format(total_amount) }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Footer -->
+    <p class="footer">
+      Make all checks payable to {{ company_name }}.<br />
+      Thank you for your business!
+    </p>
+  </div>
+</body>
+</html>

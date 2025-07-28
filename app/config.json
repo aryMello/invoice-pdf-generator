@@ -1,0 +1,25 @@
+{
+  "company_name": "ABC Solutions",
+  "company_address": "123 Main St, New York, NY 10001",
+  "company_email": "billing@abc.com",
+  "company_phone": "+1-800-555-0199",
+  "company_slogan": "Never gonna give you up. Never let you down.",
+  "primary_color": "#1a73e8",
+  "logo_path": "logo.png",
+
+  "invoice_settings": {
+    "default_tax_rate": 10,
+    "default_discount": 0,
+    "default_shipping_cost": 5.00,
+    "payment_terms_days": 15
+  },
+
+  "smtp_settings": {
+  "host": "smtp.gmail.com",
+  "port": 587,
+  "username": "${EMAIL_USERNAME}",
+  "password": "${EMAIL_PASSWORD}",
+  "from_email": "billing@abc.com",
+  "from_name": "ABC Solutions Billing"
+  }
+}
